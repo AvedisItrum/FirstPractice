@@ -1,21 +1,21 @@
 package com.example.apiswagger.domain.season;
 
 import com.example.apiswagger.domain.episode.Episode;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
+@Entity
 @Table(name = "Seasons")
 public class Season {
     @Id
@@ -28,5 +28,6 @@ public class Season {
     @NotBlank
     private String synopsis;
 
+    @OneToMany
     private Set<Episode> episodes;
 }

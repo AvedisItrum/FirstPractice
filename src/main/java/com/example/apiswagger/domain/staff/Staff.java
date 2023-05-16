@@ -7,13 +7,16 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
+@Entity
 @Table(name = "Staff")
 public class Staff {
     @Id
@@ -26,15 +29,15 @@ public class Staff {
     @NotNull(message = "Avatar can't be empty")
     private byte[] image;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "directors")
     @JsonIgnore
     private Set<Film> directedFilms;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "writers")
     @JsonIgnore
     private Set<Film> writtenFilms;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "actors")
     @JsonIgnore
     private Set<Film> actoredFilms;
 }

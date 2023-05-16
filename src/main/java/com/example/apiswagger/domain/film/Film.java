@@ -10,13 +10,16 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
+@Entity
 @Table(name = "Films")
 public class Film {
     @Id
@@ -30,6 +33,7 @@ public class Film {
     private String plot;
 
     @NotNull(message = "Type can't be null")
+    @Enumerated(EnumType.STRING)
     private FilmType type;
 
     @NotNull(message = "Year can't be null")
