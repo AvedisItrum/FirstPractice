@@ -1,0 +1,602 @@
+databaseChangeLog:
+- changeSet:
+    id: 1684316827369-1
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: countries_pkey
+            name: id
+            type: BIGINT
+        - column:
+            name: name
+            type: VARCHAR(255)
+        tableName: countries
+- changeSet:
+    id: 1684316827369-2
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: episodes_pkey
+            name: id
+            type: BIGINT
+        - column:
+            name: link
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: number
+            type: INTEGER
+        - column:
+            name: synopsis
+            type: VARCHAR(255)
+        tableName: episodes
+- changeSet:
+    id: 1684316827369-3
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_actors_pkey
+            name: actored_films_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_actors_pkey
+            name: actors_id
+            type: BIGINT
+        tableName: films_actors
+- changeSet:
+    id: 1684316827369-4
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_countries_pkey
+            name: film_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_countries_pkey
+            name: countries_id
+            type: BIGINT
+        tableName: films_countries
+- changeSet:
+    id: 1684316827369-5
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_directors_pkey
+            name: directed_films_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_directors_pkey
+            name: directors_id
+            type: BIGINT
+        tableName: films_directors
+- changeSet:
+    id: 1684316827369-6
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_genres_pkey
+            name: film_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_genres_pkey
+            name: genres_id
+            type: BIGINT
+        tableName: films_genres
+- changeSet:
+    id: 1684316827369-7
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: imdb_rating
+            type: FLOAT8
+        - column:
+            name: plot
+            type: VARCHAR(255)
+        - column:
+            name: title
+            type: VARCHAR(255)
+        - column:
+            name: trailer
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: type
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: year
+            type: INTEGER
+        tableName: films
+- changeSet:
+    id: 1684316827369-8
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_posters_pkey
+            name: film_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_posters_pkey
+            name: posters_id
+            type: BIGINT
+        tableName: films_posters
+- changeSet:
+    id: 1684316827369-9
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_seasons_pkey
+            name: film_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_seasons_pkey
+            name: seasons_id
+            type: BIGINT
+        tableName: films_seasons
+- changeSet:
+    id: 1684316827369-10
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_writers_pkey
+            name: written_films_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: films_writers_pkey
+            name: writers_id
+            type: BIGINT
+        tableName: films_writers
+- changeSet:
+    id: 1684316827369-11
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: images_pkey
+            name: id
+            type: BIGINT
+        - column:
+            name: link
+            type: VARCHAR(255)
+        - column:
+            name: path
+            type: VARCHAR(255)
+        tableName: images
+- changeSet:
+    id: 1684316827369-12
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: seasons_episodes_pkey
+            name: season_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: seasons_episodes_pkey
+            name: episodes_id
+            type: BIGINT
+        tableName: seasons_episodes
+- changeSet:
+    id: 1684316827369-13
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: seasons_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: number
+            type: INTEGER
+        - column:
+            name: synopsis
+            type: VARCHAR(255)
+        tableName: seasons
+- changeSet:
+    id: 1684316827369-14
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: genres_pkey
+            name: id
+            type: BIGINT
+        - column:
+            name: name
+            type: VARCHAR(255)
+        tableName: genres
+- changeSet:
+    id: 1684316827369-15
+    author: user (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: staff_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: image
+            type: BYTEA
+        - column:
+            name: name
+            type: VARCHAR(255)
+        tableName: staff
+- changeSet:
+    id: 1684316827369-16
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: countries_id
+        baseTableName: films_countries
+        constraintName: fkg336bm7cqy96wfan6vmxby68n
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: countries
+        validate: true
+- changeSet:
+    id: 1684316827369-17
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: episodes_id
+        baseTableName: seasons_episodes
+        constraintName: fk79jul7qiysc60ws4q03ajibtp
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: episodes
+        validate: true
+- changeSet:
+    id: 1684316827369-18
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: written_films_id
+        baseTableName: films_writers
+        constraintName: fk50sdw767l7qvaieysm5ddqy1o
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: films
+        validate: true
+- changeSet:
+    id: 1684316827369-19
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: film_id
+        baseTableName: films_countries
+        constraintName: fk6tkrwhgida3f5394lkxl7gogp
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: films
+        validate: true
+- changeSet:
+    id: 1684316827369-20
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: directed_films_id
+        baseTableName: films_directors
+        constraintName: fkbauk1w8372f18v61ojdpxnyja
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: films
+        validate: true
+- changeSet:
+    id: 1684316827369-21
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: actored_films_id
+        baseTableName: films_actors
+        constraintName: fkcel7d5n3keosof3t5uglis1kq
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: films
+        validate: true
+- changeSet:
+    id: 1684316827369-22
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: film_id
+        baseTableName: films_posters
+        constraintName: fkjww1kad2qrjm8gx9nlhnchmsg
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: films
+        validate: true
+- changeSet:
+    id: 1684316827369-23
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: film_id
+        baseTableName: films_genres
+        constraintName: fkqr8m71obccc9w6cp91l3k8r2w
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: films
+        validate: true
+- changeSet:
+    id: 1684316827369-24
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: film_id
+        baseTableName: films_seasons
+        constraintName: fks2jcmhvjrj8xusrgr3n7v2gwl
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: films
+        validate: true
+- changeSet:
+    id: 1684316827369-25
+    author: user (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: posters_id
+        constraintName: uk_jf1ss3maq7ih75dh4goa6kemq
+        tableName: films_posters
+- changeSet:
+    id: 1684316827369-26
+    author: user (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: seasons_id
+        constraintName: uk_ru74sc5pua0tuvsy76n97grur
+        tableName: films_seasons
+- changeSet:
+    id: 1684316827369-27
+    author: user (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: episodes_id
+        constraintName: uk_66lokoh1y2dwu82evdrm1m29k
+        tableName: seasons_episodes
+- changeSet:
+    id: 1684316827369-28
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: actors_id
+        baseTableName: films_actors
+        constraintName: fkkl5417hewkxdfxrmfcf2dlrt
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: staff
+        validate: true
+- changeSet:
+    id: 1684316827369-29
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: directors_id
+        baseTableName: films_directors
+        constraintName: fkf16gvnxuux09o0ad2xu077u5x
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: staff
+        validate: true
+- changeSet:
+    id: 1684316827369-30
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: genres_id
+        baseTableName: films_genres
+        constraintName: fkb97rjj80ijlaushw1cde7xf6u
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: genres
+        validate: true
+- changeSet:
+    id: 1684316827369-31
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: posters_id
+        baseTableName: films_posters
+        constraintName: fk54085gplwixumf7mbe14xqm7h
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: images
+        validate: true
+- changeSet:
+    id: 1684316827369-32
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: seasons_id
+        baseTableName: films_seasons
+        constraintName: fk8n9g2eljjn44fqaadtsy3setg
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: seasons
+        validate: true
+- changeSet:
+    id: 1684316827369-33
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: writers_id
+        baseTableName: films_writers
+        constraintName: fke8b87dym9kak0imtb90l39hd9
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: staff
+        validate: true
+- changeSet:
+    id: 1684316827369-34
+    author: user (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: season_id
+        baseTableName: seasons_episodes
+        constraintName: fkdxw115d4xkcnohc28m4vrnl6
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: seasons
+        validate: true
+
