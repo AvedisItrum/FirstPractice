@@ -17,6 +17,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 public class PostFilmDto {
+
     @NotBlank(message = "Title can't be empty")
     private String title;
 
@@ -56,4 +57,6 @@ public class PostFilmDto {
     @NotNull(message = "Actors can't be null")
 
     private Set<Staff> actors;
+
+
 }

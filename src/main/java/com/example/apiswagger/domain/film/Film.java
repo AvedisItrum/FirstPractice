@@ -3,9 +3,12 @@ package com.example.apiswagger.domain.film;
 import com.example.apiswagger.domain.image.Image;
 import com.example.apiswagger.domain.country.Country;
 import com.example.apiswagger.domain.genre.Genre;
+import com.example.apiswagger.domain.season.Season;
 import com.example.apiswagger.domain.staff.Staff;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -20,7 +23,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "Films")
+@Table(name = "films")
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,5 +69,11 @@ public class Film {
     @JsonIgnore
     private Set<Staff> actors;
 
+    @OneToMany
+    @Nullable
+    private Set<Season> seasons;
 
+    public boolean addSeason(@Valid Season season) {
+       return seasons.add(season);
+    }
 }

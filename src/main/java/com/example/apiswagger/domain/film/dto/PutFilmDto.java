@@ -10,6 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.modelmapper.ModelMapper;
 
 import java.util.Set;
 
@@ -56,4 +57,7 @@ public class PutFilmDto {
     @NotNull(message = "Actors can't be null")
 
     private Set<Staff> actors;
+
+    private final ModelMapper modelMapper;
+
 }
