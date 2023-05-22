@@ -60,46 +60,7 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public List<Film> getAllFilteredBy(String title, FilmType type,
-                                       Integer yearFrom, Integer yearTo,
-                                       Double ratingFrom, Double ratingTo,
-                                       Long[] genres, Long[] countries) {
-
-        return filmRepository.findAll()
-                .stream()
-                .filter(x -> {
-                    if (title != null && !x.getTitle().contains(title))
-                        return false;
-
-                    if (x.getType().equals(type))
-                        return false;
-
-                    if (yearFrom != null && x.getYear() < yearFrom)
-                        return false;
-
-                    if (yearTo != null && x.getYear() > yearTo)
-                        return false;
-
-                    if (ratingFrom != null && x.getImdbRating() < ratingFrom)
-                        return false;
-
-                    if (ratingTo != null && x.getImdbRating() > ratingTo)
-                        return false;
-
-                    if (genres != null) {
-                        List<Long> listGenres = Arrays.stream(genres).toList();
-                        if (x.getGenres().stream().noneMatch(y -> listGenres.contains(y.getId())))
-                            return false;
-                    }
-
-                    if (countries != null) {
-                        List<Long> listCountries = Arrays.stream(countries).toList();
-                        if (x.getCountries().stream().noneMatch(y -> listCountries.contains(y.getId())))
-                            return false;
-                    }
-
-                    return true;
-                })
-                .toList();
+    public Page<Film> getAllFilteredBy( FindFilmByQueryDto queryDto, PageRequest page) {
+        return filmRepository.findAll(FilmSpecifications.isFitsForQuery(queryDto),page);
     }
 }

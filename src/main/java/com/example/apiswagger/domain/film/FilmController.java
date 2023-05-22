@@ -1,14 +1,16 @@
 package com.example.apiswagger.domain.film;
 
-import com.example.apiswagger.domain.film.dto.PostFilmDto;
-import com.example.apiswagger.domain.film.dto.PutFilmDto;
+import com.example.apiswagger.domain.film.dto.recieve.FindFilmByQueryDto;
+import com.example.apiswagger.domain.film.dto.recieve.PostFilmDto;
+import com.example.apiswagger.domain.film.dto.recieve.PutFilmDto;
 import com.example.apiswagger.domain.season.Season;
 import com.example.apiswagger.domain.season.dto.PutSeasonDto;
 import com.example.apiswagger.domain.web.dto.CustomException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,26 +29,13 @@ public class FilmController {
     }
 
     //Read
-    @GetMapping("/film")
-    private ResponseEntity<PageImpl<Film>> getFilm(@RequestParam(defaultValue = "0") int page,
-                                                   @RequestParam(defaultValue = "10") int size,
-                                                   @RequestParam(required = false) String[] properties,
-                                                   @RequestParam(required = false) String title,
-                                                   @RequestParam(required = false) FilmType type,
-                                                   @RequestParam(required = false) Integer yearFrom,
-                                                   @RequestParam(required = false) Integer yearTo,
-                                                   @RequestParam(required = false) Double ratingFrom,
-                                                   @RequestParam(required = false) Double ratingTo,
-                                                   @RequestParam(required = false) Long[] genres,
-                                                   @RequestParam(required = false) Long[] countries) {
+    @GetMapping("/films")
+    private ResponseEntity<Page<Film>> getFilm(@RequestParam(defaultValue = "") String[] properties,
+                                               @RequestParam(defaultValue = "0") Integer page,
+                                               @RequestParam(defaultValue = "10") Integer size,
+                                               @RequestBody(required = false) FindFilmByQueryDto queryDto) {
 
-        return new ResponseEntity<>(
-                new PageImpl<>(
-                        filmService.getAllFilteredBy(title, type, yearFrom, yearTo, ratingFrom, ratingTo, genres, countries),
-                        PageRequest.of(page, size),
-                        size),
-                HttpStatus.OK
-        );
+        return ResponseEntity.status(HttpStatus.OK).body(filmService.getAllFilteredBy(queryDto, PageRequest.of(page, size, Sort.Direction.ASC, properties)));
     }
 
     @GetMapping("/films/{id}/seasons")
