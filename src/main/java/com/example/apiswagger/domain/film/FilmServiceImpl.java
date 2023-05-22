@@ -7,7 +7,6 @@ import com.example.apiswagger.domain.film.specs.FilmSpecifications;
 import com.example.apiswagger.domain.season.Season;
 import com.example.apiswagger.domain.season.dto.PutSeasonDto;
 import com.example.apiswagger.domain.web.dto.CustomException;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -30,7 +29,7 @@ public class FilmServiceImpl implements FilmService {
     @Override
     public Film updateFilm(Long id,@Valid PutFilmDto film) {
         if (!filmRepository.existsById(id))
-            throw new EntityNotFoundException("Film with ID \" + id + \" not found");
+            throw CustomException.IdNotFound(Film.class).get();
 
         Film newFilm = modelMapper.map(film, Film.class);
         newFilm.setId(id);
@@ -39,7 +38,7 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public Season addSeasonToFilm(Long id,@Valid PutSeasonDto seasonDto) {
-        Film film = filmRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Film with ID \" + id + \" not found"));
+        Film film = filmRepository.findById(id).orElseThrow(CustomException.IdNotFound(Film.class));
         Season season = modelMapper.map(seasonDto, Season.class);
         film.addSeason(season);
         return season;
@@ -47,14 +46,14 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public Long deleteFilmById(Long id) {
-        Film film = filmRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Film with ID \" + id + \" not found"));
-        filmRepository.delete(film);
+        filmRepository.findById(id).orElseThrow(CustomException.IdNotFound(Film.class));
+        filmRepository.deleteById(id);
         return id;
     }
 
     @Override
     public Season[] getSeasonByFilmId(Long id){
-        Film film = filmRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Film with ID \" + id + \" not found"));
+        Film film = filmRepository.findById(id).orElseThrow(CustomException.IdNotFound(Film.class));
 
         if (film.getType() != FilmType.SERIES)
             throw new CustomException(film.getTitle() + " is not a series");

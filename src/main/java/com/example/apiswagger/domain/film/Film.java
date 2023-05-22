@@ -1,12 +1,11 @@
 package com.example.apiswagger.domain.film;
 
-import com.example.apiswagger.domain.image.Image;
 import com.example.apiswagger.domain.country.Country;
 import com.example.apiswagger.domain.genre.Genre;
+import com.example.apiswagger.domain.image.Image;
 import com.example.apiswagger.domain.season.Season;
 import com.example.apiswagger.domain.staff.Staff;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
@@ -66,11 +65,9 @@ public class Film {
     private Set<Staff> directors;
 
     @ManyToMany
-    @JsonIgnore
     private Set<Staff> writers;
 
     @ManyToMany
-    @JsonIgnore
     private Set<Staff> actors;
 
     @OneToMany
