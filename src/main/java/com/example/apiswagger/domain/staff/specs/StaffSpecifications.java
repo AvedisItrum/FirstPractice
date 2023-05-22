@@ -8,7 +8,7 @@ import java.util.List;
 
 public class StaffSpecifications {
     public static Specification<Staff> isFitsForQuery(String keyWord) {
-        if (keyWord == null || keyWord.length()==0)
+        if (keyWord == null || keyWord.isEmpty())
             return null;
         List<Specification<Staff>> specifications = new ArrayList<>();
 

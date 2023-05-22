@@ -30,7 +30,7 @@ public class FilmController {
 
     //Read
     @GetMapping("/films")
-    private ResponseEntity<Page<Film>> getFilm(@RequestParam(defaultValue = "") String[] properties,
+    private ResponseEntity<Page<Film>> getFilm(@RequestParam(defaultValue = "id") String[] properties,
                                                      @RequestParam(defaultValue = "0") Integer page,
                                                      @RequestParam(defaultValue = "10") Integer size,
                                                      @RequestBody(required = false) FindFilmByQueryDto queryDto) {

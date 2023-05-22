@@ -32,7 +32,7 @@ public class StaffController {
     }
 
     @GetMapping("staffs")
-    private ResponseEntity<Page<Staff>> getStaff(@RequestParam(defaultValue = "") String[] properties,
+    private ResponseEntity<Page<Staff>> getStaff(@RequestParam(defaultValue = "id") String[] properties,
                                                @RequestParam(defaultValue = "0") Integer page,
                                                @RequestParam(defaultValue = "10") Integer size,
                                                @RequestBody(required = false) String keyWord) {

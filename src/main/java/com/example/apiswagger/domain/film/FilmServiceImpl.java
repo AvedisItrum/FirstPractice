@@ -63,6 +63,8 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public Page<Film> getAllFilteredBy( FindFilmByQueryDto queryDto, PageRequest page) {
+        if(queryDto == null)
+            return filmRepository.findAll(page);
         return filmRepository.findAll(FilmSpecifications.isFitsForQuery(queryDto),page);
     }
 }

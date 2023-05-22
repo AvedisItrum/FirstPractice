@@ -40,7 +40,9 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Page<Staff> getAllFilteredBy(String keyWord, PageRequest pageRequest) {
-        return staffRepository.findAll(StaffSpecifications.isFitsForQuery(keyWord),pageRequest);
+    public Page<Staff> getAllFilteredBy(String keyWord, PageRequest page) {
+        if(keyWord ==null||keyWord.isEmpty())
+            return staffRepository.findAll(page);
+        return staffRepository.findAll(StaffSpecifications.isFitsForQuery(keyWord),page);
     }
 }
