@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class AddGenreDto {
+public class PostGenreDto {
     @NotBlank(message = "Name can't be empty")
     private String name;
 }

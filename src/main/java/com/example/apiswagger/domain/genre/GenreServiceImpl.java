@@ -1,6 +1,6 @@
 package com.example.apiswagger.domain.genre;
 
-import com.example.apiswagger.domain.genre.dto.recieve.AddGenreDto;
+import com.example.apiswagger.domain.genre.dto.recieve.PostGenreDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ public class GenreServiceImpl implements GenreService{
     private final GenreRepository genreRepository;
     private final ModelMapper modelMapper = new ModelMapper();
     @Override
-    public Genre createGenre(AddGenreDto genreDto) {
+    public Genre createGenre(PostGenreDto genreDto) {
        return genreRepository.save(modelMapper.map(genreDto,Genre.class));
     }
 
