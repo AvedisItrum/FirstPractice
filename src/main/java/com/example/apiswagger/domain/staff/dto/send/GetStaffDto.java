@@ -1,4 +1,4 @@
-package com.example.apiswagger.domain.staff.dto;
+package com.example.apiswagger.domain.staff.dto.send;
 
 import com.example.apiswagger.domain.film.Film;
 import java.util.Set;

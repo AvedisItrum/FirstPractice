@@ -1,7 +1,8 @@
 package com.example.apiswagger.domain.staff;
 
 import com.example.apiswagger.domain.film.Film;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,6 +19,9 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "Staff")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,14 +34,11 @@ public class Staff {
     private byte[] image;
 
     @ManyToMany(mappedBy = "directors")
-    @JsonIgnore
     private Set<Film> directedFilms;
 
     @ManyToMany(mappedBy = "writers")
-    @JsonIgnore
     private Set<Film> writtenFilms;
 
     @ManyToMany(mappedBy = "actors")
-    @JsonIgnore
     private Set<Film> actoredFilms;
 }

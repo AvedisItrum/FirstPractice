@@ -1,4 +1,4 @@
-package com.example.apiswagger.domain.staff.dto;
+package com.example.apiswagger.domain.staff.dto.recieve;
 
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class UpdateStaffInfoDto {
+public class PutStaffInfoDto {
     @NotBlank(message = "Name can't be empty")
     private String name;
 
