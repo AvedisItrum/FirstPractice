@@ -1,4 +1,4 @@
-package com.example.apiswagger.domain.film.dto;
+package com.example.apiswagger.domain.film.dto.recieve;
 
 import com.example.apiswagger.domain.country.Country;
 import com.example.apiswagger.domain.film.FilmType;
@@ -7,15 +7,11 @@ import com.example.apiswagger.domain.image.Image;
 import com.example.apiswagger.domain.staff.Staff;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.Set;
 
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 public class PostFilmDto {
 
     @NotBlank(message = "Title can't be empty")

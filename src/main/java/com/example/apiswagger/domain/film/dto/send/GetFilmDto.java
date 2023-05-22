@@ -1,4 +1,4 @@
-package com.example.apiswagger.domain.film.dto;
+package com.example.apiswagger.domain.film.dto.send;
 
 import com.example.apiswagger.domain.image.Image;
 import com.example.apiswagger.domain.country.Country;
