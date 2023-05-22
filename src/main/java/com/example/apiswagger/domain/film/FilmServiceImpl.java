@@ -1,31 +1,34 @@
 package com.example.apiswagger.domain.film;
 
-import com.example.apiswagger.domain.film.dto.PostFilmDto;
-import com.example.apiswagger.domain.film.dto.PutFilmDto;
+import com.example.apiswagger.domain.film.dto.recieve.FindFilmByQueryDto;
+import com.example.apiswagger.domain.film.dto.recieve.PostFilmDto;
+import com.example.apiswagger.domain.film.dto.recieve.PutFilmDto;
+import com.example.apiswagger.domain.film.specs.FilmSpecifications;
 import com.example.apiswagger.domain.season.Season;
 import com.example.apiswagger.domain.season.dto.PutSeasonDto;
 import com.example.apiswagger.domain.web.dto.CustomException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class FilmServiceImpl implements FilmService {
     private final FilmRepository filmRepository;
-    private final ModelMapper modelMapper;
+
+    private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public Film createFilm(PostFilmDto film) {
+    public Film createFilm(@Valid PostFilmDto film) {
         return filmRepository.save(modelMapper.map(film, Film.class));
     }
 
     @Override
-    public Film updateFilm(Long id, PutFilmDto film) {
+    public Film updateFilm(Long id,@Valid PutFilmDto film) {
         if (!filmRepository.existsById(id))
             throw new EntityNotFoundException("Film with ID \" + id + \" not found");
 
@@ -35,7 +38,7 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public Season addSeasonToFilm(Long id, PutSeasonDto seasonDto) {
+    public Season addSeasonToFilm(Long id,@Valid PutSeasonDto seasonDto) {
         Film film = filmRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Film with ID \" + id + \" not found"));
         Season season = modelMapper.map(seasonDto, Season.class);
         film.addSeason(season);

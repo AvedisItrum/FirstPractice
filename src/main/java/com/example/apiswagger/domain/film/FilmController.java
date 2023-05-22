@@ -31,9 +31,9 @@ public class FilmController {
     //Read
     @GetMapping("/films")
     private ResponseEntity<Page<Film>> getFilm(@RequestParam(defaultValue = "") String[] properties,
-                                               @RequestParam(defaultValue = "0") Integer page,
-                                               @RequestParam(defaultValue = "10") Integer size,
-                                               @RequestBody(required = false) FindFilmByQueryDto queryDto) {
+                                                     @RequestParam(defaultValue = "0") Integer page,
+                                                     @RequestParam(defaultValue = "10") Integer size,
+                                                     @RequestBody(required = false) FindFilmByQueryDto queryDto) {
 
         return ResponseEntity.status(HttpStatus.OK).body(filmService.getAllFilteredBy(queryDto, PageRequest.of(page, size, Sort.Direction.ASC, properties)));
     }

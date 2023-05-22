@@ -8,7 +8,6 @@ import com.example.apiswagger.domain.season.dto.PutSeasonDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-import java.util.List;
 
 public interface FilmService {
     //Create

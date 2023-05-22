@@ -5,7 +5,9 @@ import com.example.apiswagger.domain.country.Country;
 import com.example.apiswagger.domain.genre.Genre;
 import com.example.apiswagger.domain.season.Season;
 import com.example.apiswagger.domain.staff.Staff;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -24,6 +26,9 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "films")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,7 +63,6 @@ public class Film {
     private Set<Image> posters;
 
     @ManyToMany
-    @JsonIgnore
     private Set<Staff> directors;
 
     @ManyToMany
@@ -74,6 +78,6 @@ public class Film {
     private Set<Season> seasons;
 
     public boolean addSeason(@Valid Season season) {
-       return seasons.add(season);
+        return seasons.add(season);
     }
 }
