@@ -4,9 +4,8 @@ import com.example.apiswagger.domain.film.dto.recieve.FindFilmByQueryDto;
 import com.example.apiswagger.domain.film.dto.recieve.PostFilmDto;
 import com.example.apiswagger.domain.film.dto.recieve.PutFilmDto;
 import com.example.apiswagger.domain.season.Season;
-import com.example.apiswagger.domain.season.dto.PutSeasonDto;
+import com.example.apiswagger.domain.season.dto.recieve.PutSeasonDto;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 
 public interface FilmService {
@@ -17,13 +16,17 @@ public interface FilmService {
     //Read
     Season[] getSeasonByFilmId(Long id);
 
-    Page<Film> getAllFilteredBy(FindFilmByQueryDto queryDto, PageRequest page);
+    Page<Film> getAllFilteredBy(FindFilmByQueryDto queryDto);
 
     //Update
     Film updateFilm(Long id, PutFilmDto film);
 
-    Season addSeasonToFilm(Long id, PutSeasonDto seasonDto);
+    Season addSeasonToFilm(Long id,PutSeasonDto seasonDto) ;
 
     //Delete
     Long deleteFilmById(Long id);
+
+    Film convertFromDto(PostFilmDto dto);
+    Film convertFromDto(PutFilmDto dto);
+
 }

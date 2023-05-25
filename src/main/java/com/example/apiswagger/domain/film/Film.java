@@ -5,8 +5,8 @@ import com.example.apiswagger.domain.genre.Genre;
 import com.example.apiswagger.domain.image.Image;
 import com.example.apiswagger.domain.season.Season;
 import com.example.apiswagger.domain.staff.Staff;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.example.apiswagger.domain.staff.dto.send.StaffWithoutFilmsDto;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,10 +26,10 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "films")
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+
+
 public class Film {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -57,9 +58,23 @@ public class Film {
 
     @ManyToMany
     private Set<Country> countries;
-
-    @OneToMany
+    @ManyToMany
     private Set<Image> posters;
+
+    @JsonGetter("directors")
+    public Set<StaffWithoutFilmsDto> getDirectorsJson() {
+        return directors.stream().map(StaffWithoutFilmsDto::new).collect(Collectors.toSet());
+    }
+
+    @JsonGetter("writers")
+    public Set<StaffWithoutFilmsDto> getWritersJson() {
+        return writers.stream().map(StaffWithoutFilmsDto::new).collect(Collectors.toSet());
+    }
+
+    @JsonGetter("actors")
+    public Set<StaffWithoutFilmsDto> getActorsJson() {
+        return actors.stream().map(StaffWithoutFilmsDto::new).collect(Collectors.toSet());
+    }
 
     @ManyToMany
     private Set<Staff> directors;
@@ -69,12 +84,13 @@ public class Film {
 
     @ManyToMany
     private Set<Staff> actors;
-
-    @OneToMany
+    @ManyToMany
     @Nullable
     private Set<Season> seasons;
 
     public boolean addSeason(@Valid Season season) {
         return seasons.add(season);
     }
+
+
 }

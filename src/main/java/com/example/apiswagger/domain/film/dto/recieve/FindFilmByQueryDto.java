@@ -2,26 +2,52 @@ package com.example.apiswagger.domain.film.dto.recieve;
 
 import com.example.apiswagger.domain.film.FilmType;
 import jakarta.annotation.Nullable;
-import lombok.Value;
+import lombok.*;
 
-//Убрал private потому что @value делает это автоматически
-@Value
-@Nullable
+@Getter
+@Setter
 public class FindFilmByQueryDto {
+    public FindFilmByQueryDto(String[] properties,
+                              Integer page,
+                              Integer size,
+                              String title,
+                              FilmType type,
+                              Integer yearFrom,
+                              Integer yearTo,
+                              Double ratingFrom,
+                              Double ratingTo,
+                              Long[] genres,
+                              Long[] countries) {
+        this.page = page==null?0:page;
+        this.size = size==null?10:size;
+        this.properties = properties==null?new String[]{"id"}:properties;
+        this.title = title;
+        this.type = type;
+        this.yearFrom = yearFrom;
+        this.yearTo = yearTo;
+        this.ratingFrom = ratingFrom;
+        this.ratingTo = ratingTo;
+        this.genres = genres;
+        this.countries = countries;
+    }
+
+    private String[] properties;
+    private Integer page;
+    private Integer size;
     @Nullable
-    String title;
+    private String title;
     @Nullable
-    FilmType type;
+    private FilmType type;
     @Nullable
-    Integer yearFrom;
+    private Integer yearFrom;
     @Nullable
-    Integer yearTo;
+    private Integer yearTo;
     @Nullable
-    Double ratingFrom;
+    private Double ratingFrom;
     @Nullable
-    Double ratingTo;
+    private Double ratingTo;
     @Nullable
-    Long[] genres;
+    private Long[] genres;
     @Nullable
-    Long[] countries;
+    private Long[] countries;
 }

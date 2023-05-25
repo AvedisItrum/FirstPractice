@@ -1,5 +1,6 @@
 package com.example.apiswagger.domain.country;
 
+import com.example.apiswagger.domain.country.dto.recieve.UpdateCountryDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "Countries")
+@Table(name = "countries")
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +21,9 @@ public class Country {
 
     @NotBlank(message = "Name can't be null")
     private String name;
+
+    public Country update(UpdateCountryDto countryDto){
+        name = countryDto.getName();
+        return this;
+    }
 }

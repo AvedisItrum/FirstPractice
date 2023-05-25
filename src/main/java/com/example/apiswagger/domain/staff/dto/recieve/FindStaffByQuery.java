@@ -1,10 +1,11 @@
 package com.example.apiswagger.domain.staff.dto.recieve;
 
 import jakarta.annotation.Nullable;
-import lombok.Getter;
+import lombok.*;
 
 
 @Getter
+@Setter
 public class FindStaffByQuery {
     public FindStaffByQuery(Integer page, Integer size, String[] properties, String keyword) {
         this.page = page==null?0:page;
@@ -14,11 +15,11 @@ public class FindStaffByQuery {
     }
 
     @Nullable
-    Integer page;
+    private Integer page;
     @Nullable
-    Integer size;
+    private Integer size;
     @Nullable
-    String[] properties;
+    private String[] properties;
     @Nullable
-    String keyword;
+    private String keyword;
 }

@@ -3,18 +3,21 @@ package com.example.apiswagger.domain.staff.dto.recieve;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Value;
+import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@Value
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PutStaffDto {
 
     @NotNull
-    Long id;
+    private Long id;
 
     @NotBlank(message = "Name can't be empty")
-    String name;
+    private String name;
 
     @Nullable
-    MultipartFile optAvatar;
+    private MultipartFile optAvatar;
 }

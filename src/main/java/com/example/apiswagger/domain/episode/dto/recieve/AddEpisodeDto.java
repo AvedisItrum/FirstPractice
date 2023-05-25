@@ -1,15 +1,14 @@
-package com.example.apiswagger.domain.episode.dto;
+package com.example.apiswagger.domain.episode.dto.recieve;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
-public class PutEpisodeDto {
+public class AddEpisodeDto {
+
     @NotNull(message = "Number can't be null")
     private int number;
 

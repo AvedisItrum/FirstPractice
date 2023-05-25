@@ -1,4 +1,4 @@
-package com.example.apiswagger.domain.genre.dto.recieve;
+package com.example.apiswagger.domain.country.dto.recieve;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -7,7 +7,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostGenreDto {
-    @NotBlank(message = "Name can't be empty")
+public class UpdateCountryDto {
+    @NotBlank(message = "Name can't be null")
     private String name;
 }

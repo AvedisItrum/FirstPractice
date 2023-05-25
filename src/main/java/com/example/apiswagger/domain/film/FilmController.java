@@ -3,14 +3,10 @@ package com.example.apiswagger.domain.film;
 import com.example.apiswagger.domain.film.dto.recieve.FindFilmByQueryDto;
 import com.example.apiswagger.domain.film.dto.recieve.PostFilmDto;
 import com.example.apiswagger.domain.film.dto.recieve.PutFilmDto;
-import com.example.apiswagger.domain.season.Season;
-import com.example.apiswagger.domain.season.dto.PutSeasonDto;
-import com.example.apiswagger.domain.web.dto.CustomException;
+import com.example.apiswagger.domain.season.dto.recieve.PutSeasonDto;
+import com.example.apiswagger.domain.web.dto.IdResponseDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,42 +17,36 @@ import org.springframework.web.bind.annotation.*;
 public class FilmController {
     private final FilmService filmService;
 
+    // TODO: 22.05.2023 сравнить sql запросы
 
-    //Create
-    @PostMapping("/film")
-    private ResponseEntity<Film> addFilm(@ModelAttribute @Valid PostFilmDto film) {
-        return new ResponseEntity<>(filmService.createFilm(film), HttpStatus.OK);
+    @PutMapping("films/{id}")
+    private ResponseEntity updateFilm(@PathVariable("id") Long id, @ModelAttribute @Valid PutFilmDto newFilm) {
+        return ResponseEntity.status(HttpStatus.OK).body(filmService.updateFilm(id, newFilm));
     }
 
-    //Read
-    @GetMapping("/films")
-    private ResponseEntity<Page<Film>> getFilm(@RequestParam(defaultValue = "id") String[] properties,
-                                                     @RequestParam(defaultValue = "0") Integer page,
-                                                     @RequestParam(defaultValue = "10") Integer size,
-                                                     @RequestBody(required = false) FindFilmByQueryDto queryDto) {
-
-        return ResponseEntity.status(HttpStatus.OK).body(filmService.getAllFilteredBy(queryDto, PageRequest.of(page, size, Sort.Direction.ASC, properties)));
+    @PostMapping("film")
+    private ResponseEntity addFilm(@ModelAttribute @Valid PostFilmDto film) {
+        return ResponseEntity.status(HttpStatus.OK).body(filmService.createFilm(film));
     }
 
-    @GetMapping("/films/{id}/seasons")
-    private ResponseEntity<Season[]> getSeasonsByFilmId(@PathVariable("id") Long id) throws CustomException {
-        return new ResponseEntity<>(filmService.getSeasonByFilmId(id), HttpStatus.OK);
+    @GetMapping("films")
+    private ResponseEntity getFilm(@ModelAttribute @Valid FindFilmByQueryDto queryDto) {
+        return ResponseEntity.status(HttpStatus.OK).body(filmService.getAllFilteredBy(queryDto));
+
     }
 
-    //Update
-    @PutMapping("/films/{id}")
-    private ResponseEntity<Film> updateFilm(@PathVariable("id") Long id, @RequestBody @Valid PutFilmDto newFilm) {
-        return new ResponseEntity<>(filmService.updateFilm(id, newFilm), HttpStatus.OK);
+    @GetMapping("films/{id}/seasons")
+    private ResponseEntity getSeasonsByFilmId(@PathVariable("id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(filmService.getSeasonByFilmId(id));
     }
 
-    @PostMapping("/film/{id}/season")
-    private ResponseEntity<Season> addSeasonByFilmId(@PathVariable("id") Long id, @RequestBody @Valid PutSeasonDto season) {
-        return new ResponseEntity<>(filmService.addSeasonToFilm(id, season), HttpStatus.OK);
+    @PostMapping("film/{id}/season")
+    private ResponseEntity addSeasonByFilmId(@PathVariable("id") Long id, @ModelAttribute @Valid PutSeasonDto season) {
+        return ResponseEntity.status(HttpStatus.OK).body(filmService.addSeasonToFilm(id, season));
     }
 
-    //Delete
     @DeleteMapping("films/{id}")
-    private ResponseEntity<Long> deleteFilm(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(filmService.deleteFilmById(id), HttpStatus.OK);
+    private ResponseEntity deleteFilm(@PathVariable("id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(new IdResponseDto(filmService.deleteFilmById(id)));
     }
 }

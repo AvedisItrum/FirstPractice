@@ -1,6 +1,5 @@
 package com.example.apiswagger.domain.staff;
 
-import com.example.apiswagger.domain.image.Image;
 import com.example.apiswagger.domain.staff.dto.recieve.FindStaffByQuery;
 import com.example.apiswagger.domain.staff.dto.recieve.PostStaffDto;
 import com.example.apiswagger.domain.staff.dto.recieve.PutStaffDto;
@@ -64,7 +63,7 @@ public class StaffServiceImpl implements StaffService {
         while (iterator.hasNext())
             ids.remove(iterator.next());
 
-        throw CustomExceptions.IdsNotFound(Image.class, ids).get();
+        throw CustomExceptions.IdsNotFound(Staff.class, ids).get();
     }
 
     @Override

@@ -1,14 +1,13 @@
-package com.example.apiswagger.domain.country.dto;
+package com.example.apiswagger.domain.country.dto.recieve;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
-public class PutCountryDto {
+@NoArgsConstructor
+public class AddCountryDto {
     @NotBlank(message = "Name can't be null")
     private String name;
 }

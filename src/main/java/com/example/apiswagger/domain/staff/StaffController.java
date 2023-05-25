@@ -17,6 +17,7 @@ import java.io.IOException;
 public class StaffController {
     private final StaffService staffService;
 
+    // TODO: 25.05.2023 Проверить вывод фильмов
     @PutMapping("staffs/{id}")
     private ResponseEntity<Staff> updateStaff(@ModelAttribute PutStaffDto staffDto) throws IOException {
         return ResponseEntity.status(HttpStatus.OK).body(staffService.updateStaff(staffDto));
