@@ -1,18 +1,25 @@
 package com.example.apiswagger.domain.staff;
 
 
+import com.example.apiswagger.domain.staff.dto.recieve.FindStaffByQuery;
 import com.example.apiswagger.domain.staff.dto.recieve.PostStaffDto;
-import com.example.apiswagger.domain.staff.dto.recieve.PutStaffInfoDto;
-import com.example.apiswagger.domain.web.dto.IdResponseDto;
+import com.example.apiswagger.domain.staff.dto.recieve.PutStaffDto;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+
+import java.io.IOException;
+import java.util.Set;
 
 public interface StaffService {
-    Staff updateStaff(Long id, PutStaffInfoDto staff);
+    Staff updateStaff(PutStaffDto staffDto) throws IOException;
 
-    IdResponseDto deleteStaff(Long id);
+    Long deleteStaff(Long id);
 
-    Staff addStaff(PostStaffDto staff);
+    Staff addStaff(PostStaffDto staffDto) throws IOException;
 
-    Page<Staff> getAllFilteredBy(String keyWord, PageRequest pageRequest);
+    Page<Staff> getAllFilteredBy(FindStaffByQuery staffQuery);
+
+    Set<Staff> getStaffByIds(Set<Long> actors);
+
+    Staff convertFromDto(PutStaffDto dto) throws IOException;
+    Staff convertFromDto(PostStaffDto dto) throws IOException;
 }
