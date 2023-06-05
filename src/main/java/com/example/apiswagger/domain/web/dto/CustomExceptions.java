@@ -1,5 +1,6 @@
 package com.example.apiswagger.domain.web.dto;
 
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 
 import java.nio.file.FileAlreadyExistsException;
@@ -23,5 +24,11 @@ public class CustomExceptions extends RuntimeException {
     }
     public static Supplier<FileAlreadyExistsException> FileNotFound(String name) {
         return () -> new FileAlreadyExistsException("File with name " + name +" not found");
+    }
+    public static Supplier<EntityExistsException> EntityWithExists(String what,String value) {
+        return () -> new EntityExistsException("Entity with "+what+"\"" + value +"\" already exists");
+    }
+    public static Supplier<RuntimeException> PasswordOrLoginException() {
+        return () -> new RuntimeException("Login or password incorrect");
     }
 }
