@@ -1,14 +1,13 @@
-package com.example.apiswagger.domain.auth.dto;
+package com.example.apiswagger.domain.auth.dto.recieve;
 
 import com.example.apiswagger.domain.auth.Gender;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class SignupUserDto {
     @NotBlank(message = "Name can't be empty")
     private String name;

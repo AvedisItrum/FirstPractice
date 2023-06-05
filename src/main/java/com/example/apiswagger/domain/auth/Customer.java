@@ -10,7 +10,11 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "Customers")
+@ToString
+@Table(name = "customers",
+        uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email")
+})
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,13 +26,15 @@ public class Customer {
     @Email(message = "Email not valid")
     private String email;
 
-    @Min(value = 8,message = "Password must be at least 8 characters long")
+    @Size(min = 8,message = "Password must be at least 8 characters long")
     @NotBlank(message = "Password can't be empty")
     private String password;
 
-    @Size(max = 200,message = "Age must be in range from 0 to 200")
-    private int age = 0;
+    @Max( value= 200,message = "Age must be less than 200")
+    @Min( value= 0,message = "Age must be greater than 0")
+    private int age;
 
     @NotNull(message = "Gender shouldn't be empty")
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 }

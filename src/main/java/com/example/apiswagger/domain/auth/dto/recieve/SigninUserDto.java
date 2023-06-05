@@ -1,15 +1,14 @@
-package com.example.apiswagger.domain.auth.dto;
+package com.example.apiswagger.domain.auth.dto.recieve;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class SigninUserDto {
     @Email(message = "Email not valid")
     private String email;
