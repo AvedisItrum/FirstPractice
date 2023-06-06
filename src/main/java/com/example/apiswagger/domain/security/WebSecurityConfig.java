@@ -18,6 +18,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.Set;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -61,7 +63,8 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("auth/**").permitAll()
+                                .requestMatchers("auth/**","error").permitAll()
+                                .requestMatchers(anonymousPaths().toArray(String[]::new)).permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
@@ -69,5 +72,19 @@ public class WebSecurityConfig {
 
         http.addFilterAt(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
+    }
+    private Set<String> anonymousPaths() {
+        return Set.of("/actuator",
+                "/swagger-ui/index.html",
+                "/actuator/",
+                "/v3/api-docs",
+                "/v3/api-docs/",
+                "/swagger-ui.html",
+                "/swagger-ui/",
+                "/swagger-resources/",
+                "/v2/api-docs",
+                "/webjars/",
+                "/internal/"
+        );
     }
 }

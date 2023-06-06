@@ -7,6 +7,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @EnableAspectJAutoProxy
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
+
 public class ApiSwaggerApplication {
 
     public static void main(String[] args) {
