@@ -8,6 +8,7 @@ class ApiSwaggerApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println("init");
     }
 
 }
