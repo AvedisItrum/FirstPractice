@@ -65,8 +65,7 @@ public class WebSecurityConfig {
                         auth
                                 .requestMatchers("auth/**","error").permitAll()
                                 .requestMatchers(anonymousPaths().toArray(String[]::new)).permitAll()
-                                .anyRequest()
-                                .authenticated()
+                                .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider());
 
@@ -76,15 +75,15 @@ public class WebSecurityConfig {
     private Set<String> anonymousPaths() {
         return Set.of("/actuator",
                 "/swagger-ui/index.html",
-                "/actuator/",
+                "/actuator/**",
                 "/v3/api-docs",
-                "/v3/api-docs/",
+                "/v3/api-docs/**",
                 "/swagger-ui.html",
-                "/swagger-ui/",
-                "/swagger-resources/",
+                "/swagger-ui/**",
+                "/swagger-resources/**",
                 "/v2/api-docs",
-                "/webjars/",
-                "/internal/"
+                "/webjars/**",
+                "/internal/**"
         );
     }
 }
